@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from .local_settings import (SECRET_KEY, DEBUG,DATABASES)
+from .local_settings import (SECRET_KEY, DEBUG,DATABASES, EMAIL_HOST,
+ EMAIL_PORT, EMAIL_HOST_USER  ,EMAIL_HOST_PASSWORD )
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,16 @@ INSTALLED_APPS = [
     'ckeditor',
     'django.contrib.humanize',
     'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
+    #allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #Providers
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 
 ]
 
@@ -136,3 +147,13 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     
 }
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL='dashboard'
+SOCIALACCOUNT_LOGIN_ON_GET=True
+
+EMAIL_HOST = EMAIL_HOST
+EMAIL_PORT = EMAIL_PORT
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = True

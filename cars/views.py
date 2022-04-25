@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 
 
 def cars(request):
-    all_cars = Car.objects.all()
+    all_cars = Car.objects.all().order_by('id')
     paginator = Paginator(all_cars, 2)
     page = request.GET.get('page')
     paged_cars = paginator.get_page(page)
